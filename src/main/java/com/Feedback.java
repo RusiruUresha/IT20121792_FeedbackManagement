@@ -30,47 +30,44 @@ public class Feedback {
 			} 
 		
 		
-		public String insertFeedback(String fbType, String fbDesc, String fbRate){ 
+		public String insertFeedback(String type, String desc, String rate) {
+			Connection con = connect(); 
+			String output;
+			if (con == null) 
+			{ 
+			return "Error while connecting to the database"; 
+			}
 			
-					String output = ""; 
-					
-					try
-					{ 
-						Connection con = connect(); 
-						
-						if (con == null) 
-						{
-							return "Error while connecting to the database for inserting."; 
-							
-						} 
-						// create a prepared statement
-						
-						String query = "insert into feedback(`feedbackID`,`fbType`,`fbDesc`,`fbRate`)"
-						+" values (?, ?, ?, ?)"; 
-						PreparedStatement preparedStmt = con.prepareStatement(query); 
-						// binding values
-						preparedStmt.setInt(1, 0); 
-						preparedStmt.setString(2, fbType); 
-						preparedStmt.setString(3, fbDesc); 
-						preparedStmt.setDouble(4, Double.parseDouble(fbRate)); 
-						  
-						// execute the statement
- 
-						preparedStmt.execute(); 
-						con.close(); 
-						
-						String newFeedback = readFeedbacks(); 
-						output = "{\"status\":\"success\",\"data\":\""
-						+newFeedback+"\"}"; 
-					} 
-					
-					catch (Exception e) 
-					{ 
-						output = "{\"status\":\"error\", \"data\":\"Error while inserting the feedback.\"}"; 
-						System.err.println(e.getMessage()); 
-					} 
-					return output; 
-			} 
+			else {
+				String query="insert into feedback(feedbackID,fbType,fbDesc,fbRate) values(?,?,?,?)";
+			   try {
+				PreparedStatement ps=con.prepareStatement(query);
+	            
+				
+				ps.setInt(1, 0);
+				ps.setString(2, type);
+				ps.setString(3, desc);
+				ps.setDouble(4, Double.parseDouble(rate));
+				 
+				
+				ps.execute();
+				output="inserted";
+				con.close();
+				String newFeedback = readFeedbacks();
+				 output = "{\"status\":\"success\", \"data\": \"" + 
+						 newFeedback+ "\"}"; 
+			 } 
+			catch (Exception e) 
+			 { 
+				 output = "{\"status\":\"error\", \"data\": \"Error while inserting the item.\"}"; 
+				 System.err.println(e.getMessage()); 
+		     } 
+			   return output;
+			     
+			
+			}
+			
+		}
 		
 		
 		
