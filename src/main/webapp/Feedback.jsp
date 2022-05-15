@@ -14,7 +14,7 @@
 
 <div class="container"><div class="row"><div class="col-6"> 
 <h1>Feedback Management V10.1</h1>
-<form id="formFeedback" name="formFeedback">
+<form id="formFeedback" name="formFeedback" method="post" action="Feedback.jsp">
  Feedback Type: 
  <input id="fbType" name="feedbackType" type="text" 
  class="form-control form-control-sm">
@@ -27,8 +27,8 @@
  <br>
  <input id="btnSave" name="btnSave" type="button" value="Save" 
  class="btn btn-primary">
- <input type="hidden" id="hidFeedbackIDSave" 
- name="hidFeedbackIDSave" value="">
+ <input type="hidden" id="hidfeedbackIDSave" 
+ name="hidfeedbackIDSave" value="">
 </form>
 <div id="alertSuccess" class="alert alert-success"></div>
 <div id="alertError" class="alert alert-danger"></div>

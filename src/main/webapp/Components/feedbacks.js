@@ -24,7 +24,7 @@ if (status != true)
  return; 
  } 
 // If valid------------------------
-var type = ($("#hidFeedbackIDSave").val() == "") ? "POST" : "PUT"; 
+var type = ($("#hidfeedbackIDSave").val() == "") ? "POST" : "PUT"; 
  $.ajax( 
  { 
  url : "FeedbacksAPI", 
@@ -43,7 +43,7 @@ var type = ($("#hidFeedbackIDSave").val() == "") ? "POST" : "PUT";
 // UPDATE==========================================
 $(document).on("click", ".btnUpdate", function(event) 
 { 
-$("#hidFeedbackIDSave").val($(this).data("feedbackid")); 
+$("#hidfeedbackIDSave").val($(this).data("feedbackid")); 
  $("#fbType").val($(this).closest("tr").find('td:eq(0)').text()); 
  $("#fbDesc").val($(this).closest("tr").find('td:eq(1)').text()); 
  $("#fbRate").val($(this).closest("tr").find('td:eq(2)').text()); 
@@ -122,7 +122,7 @@ function onFeedbackSaveComplete(response, status)
 	 $("#alertError").show(); 
       }
 
-   $("#hidFeedbackIDSave").val(""); 
+   $("#hidfeedbackIDSave").val(""); 
    $("#formFeedback")[0].reset(); 
 }
 

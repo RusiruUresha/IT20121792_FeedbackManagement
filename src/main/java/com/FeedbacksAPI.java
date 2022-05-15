@@ -54,7 +54,7 @@ public class FeedbacksAPI extends HttpServlet {
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Map paras = getParasMap(request); 
-		 String output = feedbackObj.updateFeedback(paras.get("hidFeedbackIDSave").toString(), 
+		 String output = feedbackObj.updateFeedback(paras.get("hidfeedbackIDSave").toString(), 
 		 paras.get("fbType").toString(), 
 		paras.get("fbDesc").toString(), 			  
 		paras.get("fbRate").toString()); 
